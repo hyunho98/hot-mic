@@ -2,11 +2,6 @@ class EventsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
-    def create
-        event = Event.create!(event_params)
-        render json: event, status: :created
-    end
-
     def index
         events = Event.all
         render json: events
@@ -15,6 +10,11 @@ class EventsController < ApplicationController
     def show
         event = Event.find(params[:id])
         render json: event
+    end
+
+    def create
+        event = Event.create!(event_params)
+        render json: event, status: :created
     end
 
     private
