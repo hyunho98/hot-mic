@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Login from '../pages/Login'
+import EventList from '../pages/EventList'
 import NavBar from './NavBar'
 import '../App.css';
 
@@ -25,7 +26,10 @@ function App() {
       <NavBar setUser={setUser} />
       <main>
         <Routes>
-
+          <Route 
+            exact path='/'
+            element={<EventList />}
+          />
         </Routes>
       </main>
     </UserContext.Provider>

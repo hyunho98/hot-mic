@@ -27,7 +27,7 @@ function NavBar({ setUser }) {
                 <Menu.Item 
                     name='new event'
                     as={Link}
-                    to='/create/event'
+                    to='/new_event'
                 />
                 <Menu.Item 
                     name='logout'

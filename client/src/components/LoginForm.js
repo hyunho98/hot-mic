@@ -35,7 +35,7 @@ function LoginForm({ onLogin }) {
                 label="Password"
                 type='password'
                 value={password}
-                onChange={(e) => setPassword(e.target.password)}
+                onChange={(e) => setPassword(e.target.value)}
             />
             <Form.Button content="Login" />
             <Message hidden={errors.length > 0 ? false : true} list={errors} />
