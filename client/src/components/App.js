@@ -3,9 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 import Login from '../pages/Login'
 import EventList from '../pages/EventList'
 import Event from '../pages/Event'
+import Review from '../pages/Review'
 import NavBar from './NavBar'
 import EventForm from './EventForm'
-import '../App.css';
+import '../App.css'
 
 export const UserContext = createContext()
 
@@ -35,6 +36,10 @@ function App() {
           <Route
             path='/events/:id'
             element={<Event />}
+          />
+          <Route
+            path='/reviews/:id'
+            element={<Review />}
           />
           <Route 
             path='/'

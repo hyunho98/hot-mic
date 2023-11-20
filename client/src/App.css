@@ -4,12 +4,17 @@
   width: 85%;
 }
 
-.Events-container {
+p {
   text-align: center;
 }
 
-.Event-container {
+h2 {
+  text-align: center;
+}
+
+.Container {
   justify-content: center;
+  padding: 50px;
 }
 
 .Image {

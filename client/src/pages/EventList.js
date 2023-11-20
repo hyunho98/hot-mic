@@ -12,7 +12,7 @@ function EventList() {
     }, [])
 
     return (
-        <Container className='Events-container'>
+        <Container className='Container'>
             { events.length > 0 ? (
                 <Card.Group itemsPerRow='4'>
                 {

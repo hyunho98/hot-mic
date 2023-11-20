@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Item, Image, Container, Segment, Icon } from 'semantic-ui-react'
+import { Item, Image, Container, Segment } from 'semantic-ui-react'
 import ReviewForm from '../components/ReviewForm'
 
 function Event() {
@@ -24,7 +24,7 @@ function Event() {
     if (!event) return null
 
     return (
-        <Container className="Event-container">
+        <Container className="Container">
             <Image src={event.image_url} className="Image"/>
             <Segment.Group>
                 <Segment>{`${event.name} (${event.event_type})`}</Segment>
@@ -33,6 +33,7 @@ function Event() {
                 </Segment.Group>
             </Segment.Group>
             <Segment>
+                <h2>Add a Review!</h2>
                 <ReviewForm eventId={event.id} onNewReview={onNewReview} />
             </Segment>
             { reviews.length > 0 ? (
@@ -40,15 +41,12 @@ function Event() {
                     {
                         reviews.map((review) => (
                             <Item key={review.id} as={Link} to={`/reviews/${review.id}`}>
-                                <Item.Image size='tiny' src={review.user.image_url} />
+                                <Item.Image size='small' src={review.user.image_url} />
 
                                 <Item.Content>
                                     <Item.Header>{review.title}</Item.Header>
                                     <Item.Meta>{review.user.username}</Item.Meta>
                                     <Item.Description>{review.content.substring(0, 250)}...</Item.Description>
-                                    <Item.Extra>
-                                        <Icon disabled name='like' color='red'/> {review.likes} likes
-                                    </Item.Extra>
                                 </Item.Content>
                             </Item>
                         ))

@@ -1,32 +1,28 @@
 import { useState } from 'react'
 import { Form, Message, TextArea } from 'semantic-ui-react'
 
-function ReviewForm({ eventId, onNewReview }) {
-    const [content, setContent] = useState("")
-    const [title, setTitle] = useState("")
+function EditReview({ review, setReview, setEdit }) {
+    const [title, setTitle] = useState(review.title)
+    const [content, setContent] = useState(review.content)
     const [errors, setErrors] = useState([])
 
     function handleSubmit(e) {
         e.preventDefault()
-        fetch('/reviews', {
-            method: "POST",
+        fetch(`/reviews/${review.id}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 title,
-                content,
-                likes: 0,
-                event_id: eventId
+                content
             })
         })
         .then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    onNewReview(data)
-                    setContent("")
-                    setTitle("")
-                    setErrors([])
+                    setReview(data)
+                    setEdit(false)
                 })
             } else {
                 response.json().then((data) => setErrors(data.errors))
@@ -36,21 +32,21 @@ function ReviewForm({ eventId, onNewReview }) {
 
     return (
         <Form onSubmit={handleSubmit} className="Form">
-            <Form.Input
+            <Form.Input 
                 label="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
             <Form.Input
                 control={TextArea}
-                label="Content" 
+                label="Content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
-            <Form.Button content="Submit" />
+            <Form.Button content="Submit" floated='right' />
             <Message hidden={errors.length > 0 ? false : true} list={errors} />
         </Form>
     )
 }
 
-export default ReviewForm
+export default EditReview

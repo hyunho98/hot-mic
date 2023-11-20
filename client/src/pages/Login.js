@@ -7,7 +7,7 @@ function Login ({ onLogin }){
     const [showLogin, setShowLogin] = useState(true)
 
     return (
-        <div>
+        <div className="Login">
             <h2>Hot Mic</h2>
             {showLogin ? (
                  <>
