@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Form, Message } from 'semantic-ui-react'
 
-function SignUpForm ({ onLogin }){
+function SignUpForm ({ onLogin }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")

@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Login from '../pages/Login'
+import NavBar from './NavBar'
 import '../App.css';
 
 export const UserContext = createContext()
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <UserContext.Provider value={ user }>
+      <NavBar setUser={setUser} />
       <main>
         <Routes>
 
