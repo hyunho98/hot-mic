@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :content, :likes, :dislikes
+  attributes :id, :title, :content, :likes
 
   belongs_to :user
   belongs_to :event

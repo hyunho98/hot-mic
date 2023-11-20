@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
     private
 
     def review_params
-        params.permit(:title, :content, :likes, :dislikes, :event_id)
+        params.permit(:title, :content, :likes, :event_id)
     end
 
     def record_invalid(invalid)
