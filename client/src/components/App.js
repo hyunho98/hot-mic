@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Login from '../pages/Login'
 import EventList from '../pages/EventList'
 import NavBar from './NavBar'
+import EventForm from './EventForm'
 import '../App.css';
 
 export const UserContext = createContext()
@@ -26,8 +27,12 @@ function App() {
       <NavBar setUser={setUser} />
       <main>
         <Routes>
+          <Route
+            path='/new_event'
+            element={<EventForm />}
+          />
           <Route 
-            exact path='/'
+            path='/'
             element={<EventList />}
           />
         </Routes>

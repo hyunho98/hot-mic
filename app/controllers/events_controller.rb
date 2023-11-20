@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     private
 
     def event_params
-        params.permit(:name, :details, :type, :image_url)
+        params.permit(:name, :details, :event_type, :image_url)
     end
 
     def record_invalid(invalid)
