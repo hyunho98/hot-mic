@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# hot-mic
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sometimes a performer is excellent on any and every stage. Sometimes they end up being a one hit wonder. Hot Mic is an open forum for people to review and discuss not just performers but their performances as well. Hot Mic is built on three models on the backend with a reciprocal many-to-many relationship (reviews) as well as two models built on has-many-through relationships
 
-## Available Scripts
+## Features
+- Create an account with a secure password
+- Log in / log out as a user
+- Stay logged in if you refresh the page
+- Create an event to be reviewed by yourself or other users
+- View reviews that have been created by other users
+- Edit reviews that have been created by you
+- Delete any reviews, completely wiping them from the database
+- View all posted events and see from a glance how many reviews have been posted for each event
+- View and manage your reviews in one place
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Fork and clone this repository, navigate to the directory that contains this program in your terminal then install the dependencies and migrate the database using
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install --prefix client
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+rails db:migrate
+```
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Open the directory containing this program in two different terminals
 
-### `npm run build`
+One of the terminals will be used to run the backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+rails s
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+While the other will be used to run the frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start --prefix client
+```
 
-### `npm run eject`
+In a web browser, navigate to the local host using the http address shown in the front end terminal
+(http://localhost:4000 by default)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enjoy!
