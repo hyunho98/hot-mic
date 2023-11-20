@@ -7,3 +7,12 @@
 .Events-container {
   text-align: center;
 }
+
+.Event-container {
+  justify-content: center;
+}
+
+.Image {
+  margin-left: auto;
+  margin-right: auto;
+}

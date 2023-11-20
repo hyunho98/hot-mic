@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 
     def show
         event = Event.find(params[:id])
-        render json: event, include: {reviews: {include: :user}}
+        render json: event, include: ['reviews.user']
     end
 
     def create

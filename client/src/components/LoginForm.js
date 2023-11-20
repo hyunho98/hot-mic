@@ -25,7 +25,7 @@ function LoginForm({ onLogin }) {
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="Form">
             <Form.Input 
                 label="Username"
                 value={username}

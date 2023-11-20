@@ -22,7 +22,7 @@ function ReviewForm({ eventId, onNewReview }) {
         })
         .then((response) => {
             if (response.ok) {
-                response.json().then((review) => onNewReview(review))
+                response.json().then((data) => onNewReview(data))
             } else {
                 response.json().then((data) => setErrors(data.errors))
             }
@@ -30,7 +30,7 @@ function ReviewForm({ eventId, onNewReview }) {
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="Form">
             <Form.Input
                 label="Title"
                 value={title}

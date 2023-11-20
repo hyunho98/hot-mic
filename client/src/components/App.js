@@ -2,6 +2,7 @@ import { useState, useEffect, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Login from '../pages/Login'
 import EventList from '../pages/EventList'
+import Event from '../pages/Event'
 import NavBar from './NavBar'
 import EventForm from './EventForm'
 import '../App.css';
@@ -30,6 +31,10 @@ function App() {
           <Route
             path='/new_event'
             element={<EventForm />}
+          />
+          <Route
+            path='/events/:id'
+            element={<Event />}
           />
           <Route 
             path='/'
