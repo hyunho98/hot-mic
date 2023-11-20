@@ -4,6 +4,7 @@ import Login from '../pages/Login'
 import EventList from '../pages/EventList'
 import Event from '../pages/Event'
 import Review from '../pages/Review'
+import MyReviews from '../pages/MyReviews'
 import NavBar from './NavBar'
 import EventForm from './EventForm'
 import '../App.css'
@@ -32,6 +33,10 @@ function App() {
           <Route
             path='/new_event'
             element={<EventForm />}
+          />
+          <Route
+            path='/my_reviews'
+            element={<MyReviews />}
           />
           <Route
             path='/events/:id'

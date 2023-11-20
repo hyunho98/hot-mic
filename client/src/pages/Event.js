@@ -25,7 +25,7 @@ function Event() {
 
     return (
         <Container className="Container">
-            <Image src={event.image_url} className="Image"/>
+            <Image src={event.image_url} className="Image" size='medium' />
             <Segment.Group>
                 <Segment>{`${event.name} (${event.event_type})`}</Segment>
                 <Segment.Group>

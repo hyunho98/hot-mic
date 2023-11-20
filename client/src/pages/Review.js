@@ -35,7 +35,7 @@ function Review() {
 
     return (
         <Container className="Container">
-            <Image src={review.event.image_url} className="Image" />
+            <Image src={review.event.image_url} className="Image" size='medium' />
             <Segment.Group>
                 <Segment clearing>
                     {`${review.event.name} (${review.event.event_type})`}

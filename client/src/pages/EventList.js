@@ -22,7 +22,7 @@ function EventList() {
                             as={Link}
                             to={`/events/${event.id}`}
                         >
-                            <Image src={event.image_url} />
+                            <Image src={event.image_url} size='medium' />
                             <Card.Content>
                                 <Card.Header>{event.name}</Card.Header>
                                 <Card.Meta>{event.event_type}</Card.Meta>
