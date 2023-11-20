@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import Login from '../pages/Login'
 import '../App.css';
 
 export const UserContext = createContext()
@@ -16,9 +17,7 @@ function App() {
       })
   }, [])
 
-  if !user return (
-    <Login onLogin={setUser} />
-  )
+  if (!user) return ( <Login onLogin={setUser} /> )
 
   return (
     <UserContext.Provider value={ user }>

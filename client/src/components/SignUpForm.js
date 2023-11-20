@@ -32,7 +32,7 @@ function SignUpForm ({ onLogin }){
     }
 
     return (
-        <Form onSubmit={handleSubmit(e)} >
+        <Form onSubmit={handleSubmit} >
             <Form.Input 
                 label="Username"
                 value={username}
@@ -60,3 +60,5 @@ function SignUpForm ({ onLogin }){
         </Form>
     )
 }
+
+export default SignUpForm
