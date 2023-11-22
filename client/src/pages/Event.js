@@ -1,27 +1,15 @@
-import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { useParams } from 'react-router-dom'
 import { Item, Image, Container, Segment } from 'semantic-ui-react'
+import { UserContext } from '../components/App'
+import EditReview from '../components/EditReview'
 import ReviewForm from '../components/ReviewForm'
 
 function Event() {
-    const [event, setEvent] = useState(null)
-    const [reviews, setReviews] = useState([])
     const params = useParams()
-
-    useEffect(() => {
-        fetch(`/events/${params.id}`)
-        .then((response) => response.json())
-        .then((data) => {
-            setEvent(data)
-            setReviews(data.reviews)
-        }) // eslint-disable-next-line
-    }, [])
-
-    function onNewReview(data) {
-        setReviews([...reviews, data])
-    }
-
-    if (!event) return null
+    const { user, events} = useContext(UserContext)
+    const event = events.find((event) => event.id == params.id)
+    const userReview = event.reviews.find((review) => review.user_id == user.id)
 
     return (
         <Container className="Container">
@@ -33,20 +21,29 @@ function Event() {
                 </Segment.Group>
             </Segment.Group>
             <Segment>
-                <h2>Add a Review!</h2>
-                <ReviewForm eventId={event.id} onNewReview={onNewReview} />
+                { userReview ? (
+                    <>
+                        <h2>Edit Your Review</h2>
+                        <EditReview review={userReview} />
+                    </>
+                ) : (
+                    <>
+                        <h2>Add a Review!</h2>
+                        <ReviewForm currentEvent={event} />
+                    </>
+                )}
             </Segment>
-            { reviews.length > 0 ? (
+            { event.reviews ? (
                 <Item.Group>
                     {
-                        reviews.map((review) => (
-                            <Item key={review.id} as={Link} to={`/reviews/${review.id}`}>
-                                <Item.Image size='small' src={review.user.image_url} />
+                        event.reviews.map((review) => (
+                            <Item key={review.id} >
+                                <Item.Image size='small' src={event.users.find((u) => u.id == review.user_id).image_url} />
 
                                 <Item.Content>
                                     <Item.Header>{review.title}</Item.Header>
-                                    <Item.Meta>{review.user.username}</Item.Meta>
-                                    <Item.Description>{review.content.substring(0, 250)}...</Item.Description>
+                                    <Item.Meta>{event.users.find((u) => u.id == review.user_id).username}</Item.Meta>
+                                    <Item.Description>{review.content}</Item.Description>
                                 </Item.Content>
                             </Item>
                         ))

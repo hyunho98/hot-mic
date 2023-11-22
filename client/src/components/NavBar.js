@@ -19,9 +19,9 @@ function NavBar({ setUser }) {
                 to='/'
             />
             <Menu.Item 
-                name='my reviews'
+                name='my events'
                 as={Link}
-                to='/my_reviews'
+                to='/my_events'
             />
             <Menu.Menu position='right'>
                 <Menu.Item 

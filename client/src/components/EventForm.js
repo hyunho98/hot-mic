@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Form, Message, TextArea } from 'semantic-ui-react'
+import { UserContext } from './App'
 
 function EventForm() {
     const [name, setName] = useState("")
@@ -8,6 +9,7 @@ function EventForm() {
     const [details, setDetails] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [errors, setErrors] = useState([])
+    const { events, setEvents } = useContext(UserContext)
     const navigate = useNavigate()
 
     function handleSubmit(e) {
@@ -26,7 +28,11 @@ function EventForm() {
         })
         .then((response) => {
             if (response.ok) {
-                navigate('/')
+                response.json()
+                .then((data) => {
+                    setEvents([...events, data])
+                    navigate('/')
+                })
             } else {
                 response.json().then((data) => setErrors(data.errors))
             }

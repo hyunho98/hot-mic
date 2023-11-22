@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Form, Message, TextArea } from 'semantic-ui-react'
+import { UserContext } from './App'
 
-function ReviewForm({ eventId, onNewReview }) {
+function ReviewForm({ currentEvent }) {
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
     const [errors, setErrors] = useState([])
+    const { user, setUser, events, setEvents } = useContext(UserContext)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -17,16 +19,26 @@ function ReviewForm({ eventId, onNewReview }) {
                 title,
                 content,
                 likes: 0,
-                event_id: eventId
+                event_id: currentEvent.id
             })
         })
         .then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    onNewReview(data)
-                    setContent("")
-                    setTitle("")
-                    setErrors([])
+                    setEvents(events.map((event) => (
+                        event.id == data.event.id ? ({
+                            ...event,
+                            reviews: [...event.reviews, data],
+                            users: [...event.users, data.user]
+                        }) : ({
+                            ...event
+                        })
+                    )))
+                    setUser({
+                        ...user, 
+                        reviews: [...user.reviews, data],
+                        events: [...user.events, data.event]
+                    })
                 })
             } else {
                 response.json().then((data) => setErrors(data.errors))

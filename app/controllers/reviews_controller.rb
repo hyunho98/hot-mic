@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def show
@@ -9,8 +8,12 @@ class ReviewsController < ApplicationController
 
     def create
         user = User.find(session[:user_id])
-        review = user.reviews.create!(review_params)
-        render json: review, status: :created
+        if user.reviews.any? {|review| review['event_id'] == review_params['event_id']}
+            render json: { errors: ["You already have a review for this event"] }, status: :bad_request
+        else
+            review = user.reviews.create!(review_params)
+            render json: review, status: :created
+        end
     end
 
     def update
@@ -32,10 +35,6 @@ class ReviewsController < ApplicationController
 
     def review_params
         params.permit(:title, :content, :event_id)
-    end
-
-    def record_invalid(invalid)
-        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     def not_found

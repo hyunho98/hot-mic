@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Card, Container, Image } from 'semantic-ui-react'
+import { UserContext } from '../components/App'
 
 function EventList() {
-    const [events, setEvents] = useState([])
-
-    useEffect(() => {
-        fetch('/events')
-        .then((response) => response.json())
-        .then((data) => setEvents(data))
-    }, [])
+    const { events } = useContext(UserContext)
 
     return (
         <Container className='Container'>
@@ -36,12 +31,12 @@ function EventList() {
                 }
                 </Card.Group>
             ) : (
-                <>
+                <div className="Page-text">
                     <h2>No Events Found</h2>
                     <Button as={Link} to='/new_event'>
                         Create an Event
                     </Button>
-                </>
+                </div>
             )}
         </Container>
     )

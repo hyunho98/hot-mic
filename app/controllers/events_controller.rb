@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    skip_before_action :authorize, only: [:index]
 
     def index
         events = Event.all
@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 
     def show
         event = Event.find(params[:id])
-        render json: event, include: ['reviews.user']
+        render json: event
     end
 
     def create
@@ -21,10 +21,6 @@ class EventsController < ApplicationController
 
     def event_params
         params.permit(:name, :details, :event_type, :image_url)
-    end
-
-    def record_invalid(invalid)
-        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     def not_found
