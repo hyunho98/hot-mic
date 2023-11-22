@@ -1,11 +1,6 @@
 class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
-    def show
-        review = Review.find(params[:id])
-        render json: review
-    end
-
     def create
         user = User.find(session[:user_id])
         if user.reviews.any? {|review| review['event_id'] == review_params['event_id']}
