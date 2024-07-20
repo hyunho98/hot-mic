@@ -18,13 +18,12 @@ function ReviewForm({ currentEvent }) {
             body: JSON.stringify({
                 title,
                 content,
-                likes: 0,
                 event_id: currentEvent.id
             })
         })
         .then((response) => {
             if (response.ok) {
-                response.json().then((data) => {
+                response.json().then((data) => { //extract into function
                     setEvents(events.map((event) => (
                         event.id == data.event.id ? ({
                             ...event,
